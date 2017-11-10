@@ -1,0 +1,94 @@
+diff --git a/setup.py b/setup.py
+index c8d8a74..633522b 100644
+--- a/setup.py
++++ b/setup.py
+@@ -19,12 +19,30 @@ import re
+ NAME = "argon2_cffi"
+ PACKAGES = find_packages(where="src")
+ 
++# Optimized version requires SSE2 extensions.  They have been around since
++# 2001 so we try to compile it on every recent-ish x86.
++optimized = platform.machine() in ("i686", "x86", "x86_64", "AMD64")
++
+ CFFI_MODULES = ["src/argon2/_ffi_build.py:ffi"]
++include_dirs = []
++sources = []
+ lib_base = os.path.join("extras", "libargon2", "src")
+-include_dirs = [
+-    os.path.join(lib_base, "..", "include"),
+-    os.path.join(lib_base, "blake2"),
+-]
++if os.path.exists(lib_base):
++    include_dirs = [
++        os.path.join(lib_base, "..", "include"),
++        os.path.join(lib_base, "blake2"),
++    ]
++    sources = [
++        os.path.join(lib_base, path)
++        for path in [
++            "argon2.c",
++            os.path.join("blake2", "blake2b.c"),
++            "core.c",
++            "encoding.c",
++            "opt.c" if optimized else "ref.c",
++            "thread.c",
++        ]
++    ]
+ 
+ # Add vendored integer types headers if necessary.
+ windows = "win32" in str(sys.platform).lower()
+@@ -40,24 +58,10 @@ if windows:
+         # VS 2010 needs inttypes.h and fails with both.
+         include_dirs += [inttypes]
+ 
+-# Optimized version requires SSE2 extensions.  They have been around since
+-# 2001 so we try to compile it on every recent-ish x86.
+-optimized = platform.machine() in ("i686", "x86", "x86_64", "AMD64")
+-
+ LIBRARIES = [
+-    ("libargon2", {
++    ("argon2", {
+         "include_dirs": include_dirs,
+-        "sources": [
+-            os.path.join(lib_base, path)
+-            for path in [
+-                "argon2.c",
+-                os.path.join("blake2", "blake2b.c"),
+-                "core.c",
+-                "encoding.c",
+-                "opt.c" if optimized else "ref.c",
+-                "thread.c",
+-            ]
+-        ],
++        "sources": sources,
+     }),
+ ]
+ META_PATH = os.path.join("src", "argon2", "__init__.py")
+@@ -281,9 +286,13 @@ class BuildCLibWithCompilerFlags(build_clib):
+                 raise DistutilsSetupError(
+                        "in 'libraries' option (library '%s'), "
+                        "'sources' must be present and must be "
+-                       "a list of source filenames" % lib_name)
++                       "a list of source file names" % lib_name)
+             sources = list(sources)
+ 
++            if len(sources) == 0:
++                print('No source files specified. '
++                      'Skipping compilation of argon2.')
++                continue
+             print("building '%s' library" % (lib_name,))
+ 
+             # First, compile the source code to object files in the library
+diff --git a/src/argon2/_ffi_build.py b/src/argon2/_ffi_build.py
+index cec4469..ad1aad8 100644
+--- a/src/argon2/_ffi_build.py
++++ b/src/argon2/_ffi_build.py
+@@ -26,7 +26,7 @@ ffi = FFI()
+ ffi.set_source(
+     "_ffi", "#include <argon2.h>",
+     include_dirs=include_dirs,
+-    libraries=["libargon2"],
++    libraries=["argon2"],
+ )
+ 
+ ffi.cdef("""\
