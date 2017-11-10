@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+<maintainer type="person">
+	<email>m.seifert@digitalernachschub.de</email>
+	<description>Primary maintainer</description>
+</maintainer>
+<longdescription>Management client for the devpi PyPI proxy.</longdescription>
+</pkgmetadata>
