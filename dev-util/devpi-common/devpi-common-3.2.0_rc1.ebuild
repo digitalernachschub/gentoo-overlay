@@ -11,7 +11,7 @@ MY_P=${PN}-${MY_PV}
 
 DESCRIPTION="Utilities for devpi-server and devpi-client"
 HOMEPAGE="https://github.com/devpi/devpi"
-SRC_URI="mirror://github/devpi/common-${MY_PV}.tar.gz -> ${P}.tar.gz"
+SRC_URI="https://github.com/devpi/devpi/archive/common-${MY_PV}.tar.gz -> ${MY_P}.tar.gz"
 
 LICENSE="MIT"
 
