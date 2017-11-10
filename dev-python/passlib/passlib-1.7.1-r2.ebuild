@@ -16,7 +16,7 @@ SLOT="0"
 IUSE="+argon2 +bcrypt doc +scrypt test +totp"
 
 RDEPEND="
-	argon2? ( dev-python/argon2pure[${PYTHON_USEDEP}] )
+	argon2? ( dev-python/argon2_cffi[${PYTHON_USEDEP}] )
 	bcrypt? ( dev-python/bcrypt[${PYTHON_USEDEP}] )
 	totp? ( dev-python/cryptography[${PYTHON_USEDEP}] )
 	scrypt? ( dev-python/scrypt[${PYTHON_USEDEP}] )"
