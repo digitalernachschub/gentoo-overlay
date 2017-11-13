@@ -4,7 +4,7 @@
 EAPI=6
 
 PYTHON_COMPAT=( python{2_7,3_4,3_5,3_6} pypy )
-inherit distutils-r1 versionator
+inherit distutils-r1 user versionator
 
 MY_PV=$(delete_version_separator _)
 MY_P=${PN}-${MY_PV}
@@ -35,3 +35,8 @@ DEPEND="${RDEPEND}
 	"
 
 S=${WORKDIR}/${MY_P}/server
+
+pkg_setup() {
+        enewuser devpi -1 /bin/bash /var/lib/devpi
+}
+
