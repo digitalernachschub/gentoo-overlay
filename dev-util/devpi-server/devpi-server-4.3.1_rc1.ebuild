@@ -47,8 +47,15 @@ src_install() {
 }
 
 pkg_config() {
-	einfo "Setting permission of devpi-server directory…"
-	chown devpi /var/lib/devpi
-	einfo "Initializing devpi-server…"
-	su -c "devpi-server --serverdir /var/lib/devpi --init" devpi
+	local devpi_dir_default=/var/lib/devpi
+	local devpi_dir
+	read -p "Data directory (default: ${devpi_dir_default}): " devpi_dir
+	if [ -z "${devpi_dir}"]; then
+		devpi_dir=${devpi_dir_default}
+	fi
+
+	einfo "Creating devpi-server directory at ${devpi_dir}"
+	mkdir "${devpi_dir}" || die
+	chown devpi "${devpi_dir}"
+	su -c "devpi-server --serverdir ${devpi_dir} --init" devpi
 }
