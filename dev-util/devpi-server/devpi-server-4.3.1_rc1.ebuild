@@ -38,6 +38,12 @@ S=${WORKDIR}/${MY_P}/server
 
 pkg_setup() {
 	enewuser devpi -1 /bin/bash /var/lib/devpi
+}
+
+pkg_config() {
+	einfo "Setting permission of devpi-server directory…"
 	chown devpi /var/lib/devpi
+	einfo "Initializing devpi-server…"
+	su -c "devpi-server --init" devpi
 }
 
