@@ -1,0 +1,11 @@
+#!/sbin/openrc-run
+
+command=/usr/bin/devpi-server
+command_args_background="--start"
+command_user=devpi
+pidfile="${DEVPI_HOME:-/var/lib/devpi}"/.devpi/server/.xproc/devpi-server/xprocess.PID
+
+depend() {
+	need net
+}
+

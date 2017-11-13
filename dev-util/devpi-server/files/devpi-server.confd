@@ -1,0 +1,2 @@
+# Defines the home directory of the devpi user
+#DEVPI_HOME=/var/lib/devpi

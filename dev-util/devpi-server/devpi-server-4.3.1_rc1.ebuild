@@ -40,10 +40,15 @@ pkg_setup() {
 	enewuser devpi -1 /bin/bash /var/lib/devpi
 }
 
+src_install() {
+	newinitd "${FILESDIR}"/${PN}.initd ${PN}
+	newconfd "${FILESDIR}"/${PN}.confd ${PN}
+	distutils-r1_src_install
+}
+
 pkg_config() {
 	einfo "Setting permission of devpi-server directory…"
 	chown devpi /var/lib/devpi
 	einfo "Initializing devpi-server…"
 	su -c "devpi-server --init" devpi
 }
-
