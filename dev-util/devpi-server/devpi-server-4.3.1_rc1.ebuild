@@ -49,5 +49,5 @@ pkg_config() {
 	einfo "Setting permission of devpi-server directory…"
 	chown devpi /var/lib/devpi
 	einfo "Initializing devpi-server…"
-	su -c "devpi-server --init" devpi
+	su -c "devpi-server --serverdir /var/lib/devpi --init" devpi
 }
