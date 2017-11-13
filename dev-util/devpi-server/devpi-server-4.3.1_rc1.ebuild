@@ -37,6 +37,7 @@ DEPEND="${RDEPEND}
 S=${WORKDIR}/${MY_P}/server
 
 pkg_setup() {
-        enewuser devpi -1 /bin/bash /var/lib/devpi
+	enewuser devpi -1 /bin/bash /var/lib/devpi
+	chown devpi /var/lib/devpi
 }
 
