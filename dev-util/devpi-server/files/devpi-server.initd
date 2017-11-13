@@ -4,8 +4,13 @@ command=/usr/bin/devpi-server
 command_user=devpi
 command_background=1
 pidfile=/run/devpi-server.pid
+start_stop_daemon_args="--stdout /var/log/devpi-server --stderr /var/log/devpi-server"
 
 depend() {
 	need net
 }
 
+start_pre() {
+	touch /var/log/devpi-server
+	chown devpi /var/log/devpi-server
+}
