@@ -42,6 +42,7 @@ pkg_setup() {
 
 src_install() {
 	newinitd "${FILESDIR}"/${PN}.initd ${PN}
+	newconfd "${FILESDIR}"/${PN}.confd ${PN}
 	distutils-r1_src_install
 }
 

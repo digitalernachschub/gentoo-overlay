@@ -1,6 +1,7 @@
 #!/sbin/openrc-run
 
 command=/usr/bin/devpi-server
+command_args="${DEVPI_SERVER_ARGS}"
 command_user=devpi
 command_background=1
 pidfile=/run/devpi-server.pid
