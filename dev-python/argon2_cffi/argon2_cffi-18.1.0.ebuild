@@ -19,7 +19,7 @@ IUSE=""
 RDEPEND="
 	>=app-crypt/argon2-20161029:=
 	dev-python/six[${PYTHON_USEDEP}]
-	>=dev-python/cffi-1.0.0[${PYTHON_USEDEP}]
+	$(python_gen_cond_dep '>=dev-python/cffi-1.0.0[${PYTHON_USEDEP}]' 'python*')
 	$(python_gen_cond_dep 'dev-python/enum34[${PYTHON_USEDEP}]' 'python2_7' 'pypy')
 	"
 DEPEND="${RDEPEND}
