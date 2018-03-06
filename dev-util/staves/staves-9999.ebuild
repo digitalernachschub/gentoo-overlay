@@ -18,9 +18,10 @@ IUSE="git"
 RESTRICT="mirror"
 
 CDEPEND="
-	dev-python/docker-py
-	dev-python/click
-	dev-python/toml
+	${PYTHON_DEPS}
+	dev-python/docker-py[${PYTHON_USEDEP}]
+	dev-python/click[${PYTHON_USEDEP}]
+	dev-python/toml[${PYTHON_USEDEP}]
 "
 RDEPEND="
 	${CDEPEND}
