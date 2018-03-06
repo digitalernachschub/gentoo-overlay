@@ -19,7 +19,6 @@ RESTRICT="mirror"
 
 RDEPEND="
 	app-portage/flaggie
-	app-portage/layman
 	dev-python/docker-py
 	dev-python/click
 	dev-python/toml
