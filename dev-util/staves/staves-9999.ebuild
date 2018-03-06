@@ -19,6 +19,7 @@ RESTRICT="mirror"
 
 RDEPEND="
 	app-portage/flaggie
+	app-eselect/eselect-repository:0
 	dev-python/docker-py
 	dev-python/click
 	dev-python/toml
