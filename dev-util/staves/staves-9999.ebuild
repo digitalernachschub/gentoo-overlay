@@ -17,15 +17,18 @@ KEYWORDS="~amd64"
 IUSE="git"
 RESTRICT="mirror"
 
-RDEPEND="
-	app-portage/flaggie
-	app-eselect/eselect-repository:0
+CDEPEND="
 	dev-python/docker-py
 	dev-python/click
 	dev-python/toml
+"
+RDEPEND="
+	${CDEPEND}
+	app-portage/flaggie
+	app-eselect/eselect-repository:0
 	git? ( dev-vcs/git )
 "
-DEPEND="${RDEPEND}"
+DEPEND="${CDEPEND}"
 
 src_install() {
 	python_foreach_impl python_domodule ${PN}.py
