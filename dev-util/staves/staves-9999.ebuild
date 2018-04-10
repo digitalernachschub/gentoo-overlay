@@ -25,7 +25,6 @@ CDEPEND="
 "
 RDEPEND="
 	${CDEPEND}
-	app-portage/flaggie
 	app-eselect/eselect-repository:0
 	git? ( dev-vcs/git )
 "
