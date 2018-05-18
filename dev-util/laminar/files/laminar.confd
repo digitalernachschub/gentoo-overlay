@@ -1,2 +1,0 @@
-# The group of laminar's unix socket for HTTP connections, if LAMINAR_HTTP_BIND specifies a unix socket.
-LAMINAR_GROUP="web"

@@ -45,7 +45,6 @@ src_configure() {
 
 src_install() {
 	newinitd "${FILESDIR}"/laminar.initd laminar
-	newconfd "${FILESDIR}"/laminar.confd laminar
 	systemd_newunit "${S}/laminar.service" ${PN}.service
 	keepdir /var/{lib,log}/${PN}
 	fowners ${PN}:${PN} /var/{lib,log}/${PN}
