@@ -19,11 +19,6 @@ start() {
 		$(test -n "$LAMINAR_ARCHIVE_URL" && echo --env=LAMINAR_ARCHIVE_URL="$LAMINAR_ARCHIVE_URL")
 	)
 	start-stop-daemon --start --user laminar --group $LAMINAR_GROUP --exec /usr/bin/laminard --background --make-pidfile --pidfile $pidfile --stdout $logfile --stderr $logfile ${laminar_opts[*]}
-	laminar_http_socket=${LAMINAR_BIND_HTTP#unix:}
-	if [ -e $laminar_http_socket ]; then
-		chgrp $LAMINAR_GROUP $laminar_http_socket
-		chmod g+w $laminar_http_socket
-	fi
 	eend $?
 }
 
