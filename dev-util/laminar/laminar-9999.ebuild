@@ -1,4 +1,4 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -31,6 +31,7 @@ RDEPEND="${DEPEND}
 	dev-db/sqlite:3"
 
 pkg_setup() {
+	enewgroup laminar
 	enewuser laminar -1 -1 /var/lib/laminar
 }
 
@@ -46,6 +47,8 @@ src_install() {
 	newinitd "${FILESDIR}"/laminar.initd laminar
 	newconfd "${FILESDIR}"/laminar.confd laminar
 	systemd_newunit "${S}/laminar.service" ${PN}.service
+	keepdir /var/{lib,log}/${PN}
+	fowners ${PN}:${PN} /var/{lib,log}/${PN}
 
 	cmake-utils_src_install
 }
