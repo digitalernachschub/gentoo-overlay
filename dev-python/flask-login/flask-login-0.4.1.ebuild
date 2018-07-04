@@ -1,7 +1,7 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 # pypy3 compat not possible due to missing compatibility of dev-python/semantic_version
 PYTHON_COMPAT=( python2_7 python3_{4,5,6} pypy )
 
