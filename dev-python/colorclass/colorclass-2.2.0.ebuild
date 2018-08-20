@@ -2,8 +2,8 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
-# >=python3_6 is not officially supported, but other projects depend on it
-PYTHON_COMPAT=( python{2_7,3_5,3_6,3_7} )
+# Python 3_6+ are not officially supported, but other projects depend on it
+PYTHON_COMPAT=( python{2_7,3_5,3_6} )
 
 inherit distutils-r1
 
