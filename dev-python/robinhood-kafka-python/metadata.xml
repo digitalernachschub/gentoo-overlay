@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+  <maintainer type="person">
+    <email>m.seifert@digitalernachschub.de</email>
+    <name>Michael Seifert</name>
+  </maintainer>
+  <longdescription lang="en">A temporary fork of dev-python/kafka-python maintained by Robinhood.</longdescription>
+  <use>
+    <flag name="snappy">Enables support for snappy compression</flag>
+  </use>
+</pkgmetadata>
