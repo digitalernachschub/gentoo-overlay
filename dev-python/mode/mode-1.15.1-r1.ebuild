@@ -17,7 +17,7 @@ SLOT="0"
 IUSE="doc examples"
 
 CDEPEND="
-	dev-python/colorlog[${PYTHON_USEDEP}]
+	>=dev-python/colorlog-2.9.0[${PYTHON_USEDEP}]
 "
 RDEPEND="${CDEPEND}"
 DEPEND="${CDEPEND}
