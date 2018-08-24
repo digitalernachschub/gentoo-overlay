@@ -8,4 +8,7 @@
 		<remote-id type="pypi">faust</remote-id>
 		<remote-id type="github">robinhood/faust</remote-id>
 	</upstream>
+	<use>
+		<flag name="rocksdb">Adds support for faust stores (e.g. Tables) backed by RocksDB.</flag>
+	</use>
 </pkgmetadata>

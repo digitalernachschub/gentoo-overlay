@@ -14,7 +14,7 @@ SRC_URI="mirror://pypi/${PN:0:1}/${PN}/${P}.tar.gz"
 LICENSE="BSD doc? ( CC-BY-SA-4.0 )"
 KEYWORDS="~amd64 ~x86"
 SLOT="0"
-IUSE="doc examples"
+IUSE="doc examples rocksdb"
 
 CDEPEND="
 	>=dev-python/aiohttp-2.3.9[${PYTHON_USEDEP}]
@@ -28,6 +28,7 @@ CDEPEND="
 	>=dev-python/venusian-1.1.0[${PYTHON_USEDEP}]
 	>=dev-python/yarl-1.0[${PYTHON_USEDEP}]
 	$(python_gen_cond_dep 'dev-python/aiocontextvars[${PYTHON_USEDEP}]' 'python3_6')
+	rocksdb? ( >=dev-python/python-rocksdb-0.6.7[${PYTHON_USEDEP}] )
 "
 RDEPEND="${CDEPEND}"
 DEPEND="${CDEPEND}
@@ -44,6 +45,8 @@ DEPEND="${CDEPEND}
 DOCS=( AUTHORS.rst CODE_OF_CONDUCT.rst Changelog.rst README.rst )
 
 src_prepare() {
+	# Prevent examples from being installed into site-packages
+	# See https://github.com/robinhood/faust/pull/144
 	rm "${S}/examples/__init__.py" || die "Cannot find examples package"
 	distutils-r1_src_prepare
 }
