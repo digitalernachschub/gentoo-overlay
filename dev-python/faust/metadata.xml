@@ -10,5 +10,6 @@
 	</upstream>
 	<use>
 		<flag name="rocksdb">Adds support for faust stores (e.g. Tables) backed by RocksDB.</flag>
+		<flag name="uvloop">Adds support dev-python/uvloop, a replacement for Python's default AsyncIO event loop implementation written in native code.</flag>
 	</use>
 </pkgmetadata>
