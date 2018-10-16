@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
-<maintainer type="person">
-	<email>exampledev@gentoo.org</email>
-	<description>Primary maintainer</description>
-</maintainer>
-<longdescription>Mozilla's fork of libjpeg-turbo optimized for the web.</longdescription>
+  <maintainer type="person">
+    <email>m.seifert@digitalernachschub.de</email>
+    <description>Primary maintainer</description>
+  </maintainer>
+  <longdescription>Mozilla's fork of libjpeg-turbo optimized for the web.</longdescription>
+  <use>
+    <flag name="system-jpeg">Installs wrappers for mozjpeg executables (cjpeg, djpeg, …) so that mozjpeg can coexist with 
+libjpeg-turbo.</flag>
+  </use>
 </pkgmetadata>
