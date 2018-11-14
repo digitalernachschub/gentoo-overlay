@@ -6,4 +6,8 @@
     <name>Michael Seifert</name>
   </maintainer>
   <longdescription lang="en">Mode is a Python library built-on top of AsyncIO that allows you to define asynchronous Services.</longdescription>
+  <upstream>
+    <remote-id type="pypi">mode</remote-id>
+    <remote-id type="github">ask/mode</remote-id>
+  </upstream>
 </pkgmetadata>
