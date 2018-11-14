@@ -17,14 +17,15 @@ LICENSE="Apache-2.0"
 KEYWORDS="~amd64 ~x86"
 IUSE="test"
 
+# Tests are not included in the PyPI tarball
+# See https://github.com/pytest-dev/pytest-asyncio/issues/94
 RESTRICT="test"
 
-CDEPEND="
+RDEPEND="
 	>=dev-python/pytest-3.0.6[${PYTHON_USEDEP}]
 	$(python_gen_cond_dep '>=dev-python/async_generator-1.3[${PYTHON_USEDEP}]' 'python3_5')
 "
-RDEPEND="${CDEPEND}"
-DEPEND="${CDEPEND}
+DEPEND="${RDEPEND}
 	dev-python/setuptools[${PYTHON_USEDEP}]
 	test? (
 		dev-python/coverage[${PYTHON_USEDEP}]
@@ -33,5 +34,5 @@ DEPEND="${CDEPEND}
 "
 
 python_test() {
-	py.test || die
+	pytest -vv || die "Tests failed with ${EPYTHON}"
 }
