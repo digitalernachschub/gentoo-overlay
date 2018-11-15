@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
-	<maintainer type="person">
-		<email>m.seifert@digitalernachschub.de</email>
-	</maintainer>
-	<upstream>
-		<remote-id type="pypi">faust</remote-id>
-		<remote-id type="github">robinhood/faust</remote-id>
-	</upstream>
-	<use>
-		<flag name="rocksdb">Adds support for faust stores (e.g. Tables) backed by RocksDB.</flag>
-		<flag name="uvloop">Adds support dev-python/uvloop, a replacement for Python's default AsyncIO event loop implementation written in native code.</flag>
-	</use>
+  <maintainer type="person">
+    <name>Michael Seifert</name>
+    <email>m.seifert@digitalernachschub.de</email>
+  </maintainer>
+  <upstream>
+    <remote-id type="pypi">faust</remote-id>
+    <remote-id type="github">robinhood/faust</remote-id>
+  </upstream>
+  <use>
+    <flag name="rocksdb">Adds support for faust stores (e.g. Tables) backed by RocksDB.</flag>
+    <flag name="uvloop">Adds support dev-python/uvloop, a replacement for Python's default AsyncIO event loop implementation written in native code.</flag>
+  </use>
 </pkgmetadata>
