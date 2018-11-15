@@ -19,8 +19,9 @@ IUSE="test"
 RDEPEND="
 	$(python_gen_cond_dep '~dev-python/contextvars-2.3[${PYTHON_USEDEP}]' python3_5 python3_6)
 "
+# Building with <=setuptools-36.7.2 results in a SandboxViolation error
 DEPEND="${RDEPEND}
-	dev-python/setuptools[${PYTHON_USEDEP}]
+	>=dev-python/setuptools-38.5.1[${PYTHON_USEDEP}]
 	test? (
 		dev-python/pytest[${PYTHON_USEDEP}]
 		~dev-python/pytest-asyncio-0.8.0[${PYTHON_USEDEP}]
