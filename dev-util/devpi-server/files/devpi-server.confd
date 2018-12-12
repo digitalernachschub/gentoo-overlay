@@ -1,1 +1,0 @@
-DEVPI_SERVER_ARGS="--serverdir /var/lib/devpi"

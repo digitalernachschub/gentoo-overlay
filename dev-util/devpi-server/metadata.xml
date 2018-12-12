@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
-<pkgmetadata>
-<maintainer type="person">
-	<email>m.seifert@digitalernachschub.de</email>
-	<description>Primary maintainer</description>
-</maintainer>
-<longdescription>Proxy and cache for the Python Package Index. Also supports private indices.</longdescription>
-</pkgmetadata>
