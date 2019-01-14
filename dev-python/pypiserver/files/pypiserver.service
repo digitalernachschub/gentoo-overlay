@@ -1,0 +1,23 @@
+[Unit]
+Description=A minimal server for a custom Python package index
+After=network.target
+
+[Service]
+Type=simple
+PIDFile=/var/run/pypiserver.pid
+User=pypiserver
+Group=pypiserver
+
+EnvironmentFile=/etc/pypiserver.conf
+ExecStart=/usr/bin/pypi-server --interface ${PYPISERVER_INTERFACE} --port ${PYPISERVER_PORT} --log-file ${PYPISERVER_LOGFILE} ${PYPISERVER_ADDITIONAL_OPTIONS} ${PYPISERVER_PACKAGES}
+ExecStop=/bin/kill -TERM $MAINPID
+ExecReload=/bin/kill -HUP $MAINPID
+Restart=always
+
+WorkingDirectory=/var/lib/pypiserver
+
+TimeoutStartSec=3
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
