@@ -1,4 +1,4 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -17,19 +17,15 @@ KEYWORDS="~amd64"
 IUSE="git"
 RESTRICT="mirror"
 
-CDEPEND="
-	${PYTHON_DEPS}
+RDEPEND="
+	app-eselect/eselect-repository:0
 	dev-python/docker-py[${PYTHON_USEDEP}]
 	dev-python/click[${PYTHON_USEDEP}]
 	dev-python/toml[${PYTHON_USEDEP}]
-"
-RDEPEND="
-	${CDEPEND}
-	app-eselect/eselect-repository:0
 	git? ( dev-vcs/git )
 "
-DEPEND="${CDEPEND}"
+DEPEND="${RDEPEND}"
 
 src_install() {
-	python_foreach_impl python_domodule ${PN}.py
+	python_foreach_impl python_domodule ${PN}
 }
