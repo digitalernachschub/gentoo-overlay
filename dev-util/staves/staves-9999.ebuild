@@ -19,7 +19,7 @@ RESTRICT="mirror"
 
 RDEPEND="
 	app-eselect/eselect-repository:0
-	dev-python/docker-py[${PYTHON_USEDEP}]
+	>=dev-python/docker-py-3[${PYTHON_USEDEP}]
 	dev-python/click[${PYTHON_USEDEP}]
 	dev-python/toml[${PYTHON_USEDEP}]
 	git? ( dev-vcs/git )
