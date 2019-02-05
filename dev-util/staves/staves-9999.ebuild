@@ -1,19 +1,24 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
-PYTHON_COMPAT=( python{3_5,3_6} )
-inherit git-r3 python-r1
+PYTHON_COMPAT=( python3_6 )
+inherit python-r1
 
 DESCRIPTION="Gentoo-based Docker container builder"
 HOMEPAGE="https://www.digitalernachschub.de"
-EGIT_REPO_URI="git://digitalernachschub.de/staves.git"
+if [ "${PV}" == "9999" ]; then
+	inherit git-r3
+	EGIT_REPO_URI="git://digitalernachschub.de/staves.git"
+	KEYWORDS=""
+else
+	SRC_URI="https://pypi.digitalernachschub.de/packages/${P}.tar.gz"
+	KEYWORDS="~amd64 ~x86"
+fi
 
 LICENSE="all-rights-reserved"
-
 SLOT="0"
-KEYWORDS="~amd64"
 IUSE="git"
 RESTRICT="mirror"
 
