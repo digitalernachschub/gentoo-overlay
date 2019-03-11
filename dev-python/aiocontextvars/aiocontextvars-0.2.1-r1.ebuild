@@ -21,6 +21,7 @@ RDEPEND="
 "
 # Building with <=setuptools-36.7.2 results in a SandboxViolation error
 DEPEND="${RDEPEND}
+	dev-python/pytest-runner[${PYTHON_USEDEP}]
 	>=dev-python/setuptools-38.5.1[${PYTHON_USEDEP}]
 	test? (
 		dev-python/pytest[${PYTHON_USEDEP}]
