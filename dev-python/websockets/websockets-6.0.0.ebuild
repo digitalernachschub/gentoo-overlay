@@ -8,10 +8,11 @@ inherit distutils-r1
 
 MY_PV="${PV%.0}"
 MY_P="${PN}-${MY_PV}"
+S="${WORKDIR}/${MY_P}"
 
 DESCRIPTION="WebSocket implementation in Python 3"
 HOMEPAGE="https://github.com/aaugustin/websockets"
-SRC_URI="mirror://pypi/${P:0:1}/${PN}/${MY_P}.tar.gz -> ${P}"
+SRC_URI="mirror://pypi/${P:0:1}/${PN}/${MY_P}.tar.gz -> ${P}.tar.gz"
 
 LICENSE="BSD"
 SLOT="0"
