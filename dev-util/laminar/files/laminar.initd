@@ -18,7 +18,7 @@ start() {
 		$(test -n "$LAMINAR_KEEP_RUNDIRS" && echo --env=LAMINAR_KEEP_RUNDIRS="$LAMINAR_KEEP_RUNDIRS")
 		$(test -n "$LAMINAR_ARCHIVE_URL" && echo --env=LAMINAR_ARCHIVE_URL="$LAMINAR_ARCHIVE_URL")
 	)
-	start-stop-daemon --start --user laminar --group laminar --exec /usr/bin/laminard --background --make-pidfile --pidfile $pidfile --stdout $logfile --stderr $logfile ${laminar_opts[*]}
+	start-stop-daemon --start --user laminar --group laminar --exec /usr/sbin/laminard --background --make-pidfile --pidfile $pidfile --stdout $logfile --stderr $logfile ${laminar_opts[*]}
 	eend $?
 }
 
