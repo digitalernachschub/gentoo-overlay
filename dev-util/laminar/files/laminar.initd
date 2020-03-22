@@ -24,6 +24,6 @@ start() {
 
 stop() {
 	ebegin "Stopping ${SVCNAME}"
-	start-stop-daemon --stop --exec /usr/bin/laminard --pidfile $pidfile
+	start-stop-daemon --stop --exec /usr/sbin/laminard --pidfile $pidfile
 	eend $?
 }
