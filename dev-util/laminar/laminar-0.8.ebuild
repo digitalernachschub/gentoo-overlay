@@ -3,7 +3,7 @@
 
 EAPI=6
 
-inherit cmake-utils user systemd
+inherit cmake-utils systemd
 DESCRIPTION="A lightweight continuous integration server"
 
 HOMEPAGE="http://laminar.ohwg.net/"
@@ -24,18 +24,16 @@ IUSE=""
 # Disable network sandboxing so that CMake can download JavaScript dependencies
 RESTRICT="network-sandbox"
 
-DEPEND=""
+DEPEND="
+	acct-user/laminar
+	acct-group/laminar
+"
 RDEPEND="${DEPEND}
 	>=dev-libs/capnproto-0.7.0
 	>=dev-libs/rapidjson-1.1.0
 	>=dev-cpp/websocketpp-0.7.0
 	>=dev-libs/boost-1.62
 	dev-db/sqlite:3"
-
-pkg_setup() {
-	enewgroup laminar
-	enewuser laminar -1 -1 /var/lib/laminar
-}
 
 src_configure() {
 	local mycmakeargs=(
@@ -47,8 +45,8 @@ src_configure() {
 
 src_install() {
 	newinitd "${FILESDIR}"/laminar.initd laminar
-	keepdir /var/{lib,log}/${PN}
-	fowners ${PN}:${PN} /var/{lib,log}/${PN}
+	keepdir /var/log/${PN}
+	fowners ${PN}:${PN} /var/log/${PN}
 
 	cmake-utils_src_install
 }
