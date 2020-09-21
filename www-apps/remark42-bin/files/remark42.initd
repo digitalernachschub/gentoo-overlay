@@ -1,0 +1,21 @@
+#!/sbin/openrc-run
+
+logfile=/var/log/remark42/${SVCNAME}.log
+pidfile=/var/run/${SVCNAME}.pid
+
+depend() {
+	need net
+}
+
+start() {
+	ebegin "Starting ${SVCNAME}"
+	source "${REMARK42_CONF}"
+	start-stop-daemon --start --user "${REMARK42_USER}" --group "${REMARK42_GROUP}" --chdir "${REMARK42_HOME}" --exec "/usr/bin/remark42" --background --make-pidfile --pidfile "${pidfile}" --stdout "${logfile}" --stderr "${logfile}" -- server ${REMARK42_OPTS[*]}
+	eend $?
+}
+
+stop() {
+	ebegin "Stopping ${SVCNAME}"
+	start-stop-daemon --stop --pidfile "${pidfile}"
+	eend $?
+}
