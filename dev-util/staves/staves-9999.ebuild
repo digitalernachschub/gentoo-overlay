@@ -6,10 +6,10 @@ EAPI=7
 PYTHON_COMPAT=( python3_{6..9} )
 
 DESCRIPTION="Gentoo-based Docker container builder"
-HOMEPAGE="https://www.digitalernachschub.de"
+HOMEPAGE="https://github.com/digitalernachschub/staves"
 if [ "${PV}" == "9999" ]; then
 	inherit git-r3
-	EGIT_REPO_URI="git://digitalernachschub.de/staves.git"
+	EGIT_REPO_URI="https://github.com/digitalernachschub/staves.git"
 	KEYWORDS=""
 
 	# Cannot use distutils, because there is no proper way to generate a setup.py with the poetry package manager
