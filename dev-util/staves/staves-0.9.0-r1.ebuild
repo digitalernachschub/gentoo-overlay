@@ -1,15 +1,15 @@
-# Copyright 1999-2019 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
 
-PYTHON_COMPAT=( python3_6 )
+PYTHON_COMPAT=( python3_{7..9} )
 
 DESCRIPTION="Gentoo-based Docker container builder"
-HOMEPAGE="https://www.digitalernachschub.de"
+HOMEPAGE="https://github.com/digitalernachschub/staves"
 if [ "${PV}" == "9999" ]; then
 	inherit git-r3
-	EGIT_REPO_URI="git://digitalernachschub.de/staves.git"
+	EGIT_REPO_URI="https://github.com/digitalernachschub/staves.git"
 	KEYWORDS=""
 
 	# Cannot use distutils, because there is no proper way to generate a setup.py with the poetry package manager
@@ -24,7 +24,7 @@ else
 	KEYWORDS="~amd64 ~x86"
 fi
 
-LICENSE="all-rights-reserved"
+LICENSE="Apache-2.0"
 SLOT="0"
 IUSE="git"
 RESTRICT="mirror"
