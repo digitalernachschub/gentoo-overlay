@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
-<pkgmetadata>
-  <maintainer type="person">
-    <email>m.seifert@digitalernachschub.de</email>
-    <name>Michael Seifert</name>
-  </maintainer>
-  <longdescription lang="en">Allows adding automatic completion support for fish, Zsh, Bash and PowerShell to Click.</longdescription>
-</pkgmetadata>
