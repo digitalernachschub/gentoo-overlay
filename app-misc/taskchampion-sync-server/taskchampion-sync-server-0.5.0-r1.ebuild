@@ -222,7 +222,7 @@ CRATES="
 	zstd@0.13.2
 "
 
-inherit cargo
+inherit cargo systemd
 
 DESCRIPTION="HTTP server for synchronizing Taskwarrior tasks"
 HOMEPAGE="https://github.com/GothenburgBitFactory/taskchampion-sync-server"
@@ -249,4 +249,5 @@ DEPEND="
 src_install() {
 	cargo_src_install --path ./server
 	default
+	systemd_dounit "${FILESDIR}/${PN}.service"
 }

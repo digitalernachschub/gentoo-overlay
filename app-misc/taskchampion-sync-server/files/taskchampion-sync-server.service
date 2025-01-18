@@ -1,0 +1,13 @@
+[Unit]
+Description=Taskchampion sync server
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/taskchampion-sync-server
+Restart=on-failure
+User=taskchampion-sync-server
+Group=taskchampion-sync-server
+
+
+[Install]
+WantedBy=multi-user.target
