@@ -1,0 +1,252 @@
+# Copyright 2025 Gentoo Authors
+# Distributed under the terms of the GNU General Public License v2
+
+EAPI=8
+
+CRATES="
+	actix-codec@0.5.2
+	actix-http@3.9.0
+	actix-macros@0.2.4
+	actix-router@0.5.3
+	actix-rt@2.10.0
+	actix-server@2.5.0
+	actix-service@2.0.2
+	actix-utils@3.0.1
+	actix-web-codegen@4.3.0
+	actix-web@4.9.0
+	addr2line@0.24.1
+	adler2@2.0.0
+	ahash@0.8.11
+	aho-corasick@1.1.3
+	alloc-no-stdlib@2.0.4
+	alloc-stdlib@0.2.2
+	android-tzdata@0.1.1
+	android_system_properties@0.1.5
+	anstream@0.6.15
+	anstyle-parse@0.2.5
+	anstyle-query@1.1.1
+	anstyle-wincon@3.0.4
+	anstyle@1.0.8
+	anyhow@1.0.89
+	autocfg@1.4.0
+	backtrace@0.3.74
+	base64@0.22.1
+	bitflags@2.6.0
+	block-buffer@0.10.4
+	brotli-decompressor@4.0.1
+	brotli@6.0.0
+	bumpalo@3.16.0
+	byteorder@1.5.0
+	bytes@1.7.2
+	bytestring@1.3.1
+	cc@1.1.24
+	cfg-if@1.0.0
+	chrono@0.4.38
+	clap@4.5.19
+	clap_builder@4.5.19
+	clap_lex@0.7.2
+	colorchoice@1.0.2
+	convert_case@0.4.0
+	cookie@0.16.2
+	core-foundation-sys@0.8.7
+	cpufeatures@0.2.14
+	crc32fast@1.4.2
+	crypto-common@0.1.6
+	deranged@0.3.11
+	derive_more@0.99.18
+	diff@0.1.13
+	digest@0.10.7
+	displaydoc@0.2.5
+	encoding_rs@0.8.34
+	env_filter@0.1.2
+	env_logger@0.11.5
+	equivalent@1.0.1
+	errno@0.3.9
+	fallible-iterator@0.3.0
+	fallible-streaming-iterator@0.1.9
+	fastrand@2.1.1
+	flate2@1.0.34
+	fnv@1.0.7
+	form_urlencoded@1.2.1
+	futures-channel@0.3.30
+	futures-core@0.3.30
+	futures-executor@0.3.30
+	futures-io@0.3.31
+	futures-macro@0.3.30
+	futures-sink@0.3.30
+	futures-task@0.3.30
+	futures-util@0.3.30
+	futures@0.3.30
+	generic-array@0.14.7
+	getrandom@0.2.15
+	gimli@0.31.0
+	h2@0.3.26
+	hashbrown@0.14.5
+	hashbrown@0.15.2
+	hashlink@0.9.1
+	hermit-abi@0.3.9
+	http@0.2.12
+	httparse@1.9.5
+	httpdate@1.0.3
+	humantime@2.1.0
+	iana-time-zone-haiku@0.1.2
+	iana-time-zone@0.1.61
+	icu_collections@1.5.0
+	icu_locid@1.5.0
+	icu_locid_transform@1.5.0
+	icu_locid_transform_data@1.5.0
+	icu_normalizer@1.5.0
+	icu_normalizer_data@1.5.0
+	icu_properties@1.5.1
+	icu_properties_data@1.5.0
+	icu_provider@1.5.0
+	icu_provider_macros@1.5.0
+	idna@1.0.3
+	idna_adapter@1.2.0
+	impl-more@0.1.6
+	indexmap@2.6.0
+	is_terminal_polyfill@1.70.1
+	itoa@1.0.11
+	jobserver@0.1.32
+	js-sys@0.3.70
+	language-tags@0.3.2
+	libc@0.2.162
+	libsqlite3-sys@0.30.1
+	linux-raw-sys@0.4.14
+	litemap@0.7.4
+	local-channel@0.1.5
+	local-waker@0.1.4
+	lock_api@0.4.12
+	log@0.4.22
+	memchr@2.7.4
+	mime@0.3.17
+	miniz_oxide@0.8.0
+	mio@1.0.2
+	num-conv@0.1.0
+	num-traits@0.2.19
+	object@0.36.4
+	once_cell@1.20.1
+	parking_lot@0.12.3
+	parking_lot_core@0.9.10
+	paste@1.0.15
+	percent-encoding@2.3.1
+	pin-project-lite@0.2.14
+	pin-utils@0.1.0
+	pkg-config@0.3.31
+	portable-atomic@1.9.0
+	powerfmt@0.2.0
+	ppv-lite86@0.2.20
+	pretty_assertions@1.4.1
+	proc-macro2@1.0.86
+	quote@1.0.37
+	rand@0.8.5
+	rand_chacha@0.3.1
+	rand_core@0.6.4
+	redox_syscall@0.5.7
+	regex-automata@0.4.8
+	regex-lite@0.1.6
+	regex-syntax@0.8.5
+	regex@1.11.0
+	rusqlite@0.32.1
+	rustc-demangle@0.1.24
+	rustc_version@0.4.1
+	rustix@0.38.39
+	ryu@1.0.18
+	scopeguard@1.2.0
+	semver@1.0.23
+	serde@1.0.210
+	serde_derive@1.0.210
+	serde_json@1.0.128
+	serde_urlencoded@0.7.1
+	sha1@0.10.6
+	shlex@1.3.0
+	signal-hook-registry@1.4.2
+	slab@0.4.9
+	smallvec@1.13.2
+	socket2@0.5.7
+	stable_deref_trait@1.2.0
+	strsim@0.11.1
+	syn@2.0.87
+	synstructure@0.13.1
+	tempfile@3.14.0
+	thiserror-impl@2.0.3
+	thiserror@2.0.3
+	time-core@0.1.2
+	time-macros@0.2.18
+	time@0.3.36
+	tinystr@0.7.6
+	tokio-util@0.7.12
+	tokio@1.40.0
+	tracing-core@0.1.32
+	tracing@0.1.40
+	typenum@1.17.0
+	unicode-ident@1.0.13
+	url@2.5.4
+	utf16_iter@1.0.5
+	utf8_iter@1.0.4
+	utf8parse@0.2.2
+	uuid@1.11.0
+	vcpkg@0.2.15
+	version_check@0.9.5
+	wasi@0.11.0+wasi-snapshot-preview1
+	wasm-bindgen-backend@0.2.93
+	wasm-bindgen-macro-support@0.2.93
+	wasm-bindgen-macro@0.2.93
+	wasm-bindgen-shared@0.2.93
+	wasm-bindgen@0.2.93
+	windows-core@0.52.0
+	windows-sys@0.52.0
+	windows-sys@0.59.0
+	windows-targets@0.52.6
+	windows_aarch64_gnullvm@0.52.6
+	windows_aarch64_msvc@0.52.6
+	windows_i686_gnu@0.52.6
+	windows_i686_gnullvm@0.52.6
+	windows_i686_msvc@0.52.6
+	windows_x86_64_gnu@0.52.6
+	windows_x86_64_gnullvm@0.52.6
+	windows_x86_64_msvc@0.52.6
+	write16@1.0.0
+	writeable@0.5.5
+	yansi@1.0.1
+	yoke-derive@0.7.5
+	yoke@0.7.5
+	zerocopy-derive@0.7.35
+	zerocopy@0.7.35
+	zerofrom-derive@0.1.5
+	zerofrom@0.1.5
+	zerovec-derive@0.10.3
+	zerovec@0.10.4
+	zstd-safe@7.2.1
+	zstd-sys@2.0.13+zstd.1.5.6
+	zstd@0.13.2
+"
+
+inherit cargo
+
+DESCRIPTION="HTTP server for synchronizing Taskwarrior tasks"
+HOMEPAGE="https://github.com/GothenburgBitFactory/taskchampion-sync-server"
+SRC_URI="
+	https://github.com/GothenburgBitFactory/taskchampion-sync-server/archive/refs/tags/v${PV}.tar.gz -> ${P}.tar.gz
+	${CARGO_CRATE_URIS}
+"
+
+LICENSE="MIT"
+# Dependent crate licenses
+LICENSE+="
+	BSD MIT Unicode-3.0 Unicode-DFS-2016
+	|| ( Apache-2.0 Boost-1.0 )
+"
+SLOT="0"
+KEYWORDS="~amd64"
+IUSE="test"
+
+DEPEND="
+	acct-group/taskchampion-sync-server
+	acct-user/taskchampion-sync-server
+"
+
+src_install() {
+	cargo_src_install --path ./server
+	default
+}
