@@ -1,8 +1,0 @@
-# Path to the configuration file
-REMARK42_CONF="/etc/remark42.conf"
-
-# User and group used to start the service
-REMARK42_USER="remark42"
-REMARK42_GROUP="remark42"
-# Data dir of the service. Ensure proper permissions for the above user and group.
-REMARK42_HOME="/var/lib/remark42"
